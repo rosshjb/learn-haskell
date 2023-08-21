@@ -114,7 +114,7 @@ valid'' Add' x y = x <= y
 valid'' Sub' x y = x > y
 valid'' Mul' x y = x /= 1 && y /= 1 && x <= y
 valid'' Div' x y = y /= 1 && x `mod` y == 0
-valid'' Exp' x y = y /= 1
+valid'' Exp' x y = x /= 1 && y /= 1
 
 apply' :: Op' -> Int -> Int -> Int
 apply' Add' x y = x + y
