@@ -89,3 +89,38 @@ ops = [Add, Sub, Mul, Div]
 possibleExpressions = length [e | xs <- choices [1,3,7,10,25,50], e <- exprs xs]
 successfulExpressions = length [e | xs <- choices [1,3,7,10,25,50], e <- exprs xs, (not . null . eval) e]
 
+-- 5.
+-- The definition of the valid function should be modified as follows.
+valid' :: Op -> Int -> Int -> Bool
+valid' Add _ _ = True
+valid' Sub _ _ = True
+valid' Mul _ _ = True
+valid' Div x y = y /= 0 && x `mod` y == 0
+
+expressions = length [e | xs <- choices [1,3,7,10,25,50], e <- exprs xs, (not . null . eval) e]
+
+-- 6.a
+data Op' = Add' | Sub' | Mul' | Div' | Exp'
+
+instance Show Op' where
+    show Add' = "+"
+    show Sub' = "-"
+    show Mul' = "*"
+    show Div' = "/"
+    show Exp' = "^"
+
+valid'' :: Op' -> Int -> Int -> Bool
+valid'' Add' x y = x <= y
+valid'' Sub' x y = x > y
+valid'' Mul' x y = x /= 1 && y /= 1 && x <= y
+valid'' Div' x y = y /= 1 && x `mod` y == 0
+valid'' Exp' x y = y /= 1
+
+apply' :: Op' -> Int -> Int -> Int
+apply' Add' x y = x + y
+apply' Sub' x y = x - y
+apply' Mul' x y = x * y
+apply' Div' x y = x `div` y
+apply' Exp' x y = x ^ y
+
+ops' = [Add', Sub', Mul', Div', Exp']
