@@ -174,7 +174,6 @@ neighbs (x,y) = map wrap [(x-1,y-1), (x,y-1),
                           (x+1,y),   (x-1,y+1),
                           (x,y+1),   (x+1,y+1)]
 
--- ?
 wrap :: Pos -> Pos
 wrap (x,y) = (((x-1) `mod` width)  + 1,
               ((y-1) `mod` height) + 1)
