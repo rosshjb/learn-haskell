@@ -60,19 +60,6 @@ getCh = do hSetEcho stdin False
            hSetEcho stdin True
            return x
 
--- getLine' :: IO String
--- getLine' = do x <- getCh
---               if x == '\n' then
---                  return []
---               else if x == '\DEL' then
---                  do putStr "\b\DEL\b"
---                     xs <- getLine'
---                     return xs
---               else
---                  do putChar x
---                     xs <- getLine'
---                     return (x:xs)
-
 readLine :: IO String
 readLine = readLine' ""
            where readLine' :: String -> IO String
